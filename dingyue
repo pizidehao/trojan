@@ -1,8 +1,3 @@
-###############################################################
-# 本范例来源为网络
-# YouTube 搜索 波仔分享
-# 原文发布地址 https://www.v2rayssr.com/clashxx.html
-###############################################################
 port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -118,7 +113,7 @@ Proxy:
 
 
 # 配置开始
-- name: "v2ray-bwg"
+- name: "v1"
   type: vmess
   server: bwg.pizi.men
   port: 443
@@ -130,23 +125,13 @@ Proxy:
   ws-path: /abcdv2
   Host: bwg.pizi.men
 
-- name: "trojan-TC"
-  type: trojan
-  server: tc.pizi.men
-  port: 443
-  password: 3351bbf0
 
-- name: "trojan-bwg"
+- name: "v2"
   type: trojan
   server: bwg.pizi.men
   port: 443
   password: e0d0ecd3-9bd1-4f08-82fd-928b51802c23
 
-- name: "bwg"
-  type: trojan
-  server: aa.pizi.gq
-  port: 443
-  password: 253ffc8e-d96e-45bc-b658-4a5ee2436374
 
 ###############################################################配置分割线
 
@@ -157,10 +142,8 @@ Proxy Group:
 - name: "自动节点选择"
   type: url-test
   proxies:
-    - "v2ray-bwg"
-    - "trojan-TC"
-    - "trojan-bwg"
-    - "bwg"
+    - "v1"
+    - "v2"
   url: 'http://www.gstatic.com/generate_204'
   interval: 300
 
@@ -169,10 +152,8 @@ Proxy Group:
   type: select
   proxies:
     - "自动节点选择"
-    - "v2ray-bwg"
-    - "trojan-TC"
-    - "trojan-bwg"
-    - "bwg"
+    - "v1"
+    - "v2"
 # 白名单模式 PROXY，黑名单模式 DIRECT
 - name: "Final"
   type: select
@@ -190,19 +171,15 @@ Proxy Group:
   type: select
   proxies:
     - "PROXY"
-    - "v2ray-bwg"
-    - "trojan-TC"
-    - "trojan-bwg"
-    - "bwg"
+    - "v1"
+    - "v2"
 # 大陆流媒体面向港澳台限定服务
 - name: "HKMTMedia"
   type: select
   proxies:
     - "DIRECT"
-    - "v2ray-bwg"
-    - "trojan-TC"
-    - "trojan-bwg"
-    - "bwg"
+    - "v1"
+    - "v2"
 # 运营商及声名狼藉网站劫持
 - name: "Hijacking"
   type: select
